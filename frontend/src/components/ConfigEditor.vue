@@ -43,7 +43,6 @@
           <div v-if="!configData.basicConfig.apiKeys || configData.basicConfig.apiKeys.length === 0" class="no-keys-message">
             尚未添加 API Key。请点击下方按钮添加。
           </div>
-          <!-- Loop through API Keys -->
           <div v-for="(key, index) in configData.basicConfig.apiKeys" :key="index" class="api-key-item">
             <input
                 type="text"
@@ -92,7 +91,6 @@
 </template>
 
 <script setup>
-// --- Script setup remains exactly the same as the previous working version ---
 import { ref, onMounted } from 'vue';
 const getConfigApiUrl = 'http://localhost:8080/api/config/get';
 const saveConfigApiUrl = 'http://localhost:8080/api/config/save';

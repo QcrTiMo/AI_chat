@@ -1,0 +1,12 @@
+com\example\aichat\ChatHandler$1.class
+com\example\aichat\ConfigLoader.class
+com\example\aichat\ConfigData.class
+com\example\aichat\ChatHandler$ApiException.class
+com\example\aichat\ConfigSaveHandler.class
+com\example\aichat\ChatHandler.class
+com\example\aichat\BasicConfig.class
+com\example\aichat\ChatMessage.class
+com\example\aichat\ChatServer.class
+com\example\aichat\ConfigGetHandler.class
+com\example\aichat\ChatRequest.class
+com\example\aichat\WebConfig.class

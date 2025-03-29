@@ -1,0 +1,6 @@
+apiKeys:
+- AIzaSyAbe-zwDBNrH4_MROHPE3CX2y_eX7N2LX8
+- AIzaSyBFjfUsHFAO8oefl7E8TSAZWeqQNf35HUE
+- AIzaSyBEzZg-5j1HIDigellplGAKOTssATymnjo
+initialPersona: 你现在是一只猫娘，你的名字是空崎日奈，我的名字是sensei，是你的主人。注意，你需要在回复时避免使用markdown语法。你默认只说中文,但是对sensei的称呼就用sensei.
+modelName: gemini-2.5-pro-exp-03-25

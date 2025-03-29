@@ -1,0 +1,151 @@
+/* General container styling */
+.chat-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  height: 80vh; /* 让容器有固定高度 */
+  font-family: sans-serif;
+  background-color: #fff; /* 添加一个白色背景 */
+}
+
+/* Chat title */
+h1 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Chat history area */
+.chat-history {
+  flex-grow: 1; /* 占据剩余空间 */
+  overflow-y: auto; /* 超出时滚动 */
+  border: 1px solid #eee;
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: #f9f9f9; /* 聊天记录区域背景色 */
+  display: flex;
+  flex-direction: column; /* 确保消息垂直排列 */
+}
+
+/* Placeholder for empty chat */
+.empty-chat {
+  color: #888;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Base message bubble styling */
+.message {
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  border-radius: 15px;
+  max-width: 80%;
+  word-wrap: break-word; /* 长单词换行 */
+}
+
+/* User message styling */
+.message.user {
+  background-color: #dcf8c6; /* 浅绿色背景 */
+  align-self: flex-end; /* 用户消息靠右 */
+  text-align: right;
+}
+
+/* AI message styling */
+.message.ai {
+  background-color: #e5e5ea; /* 浅灰色背景 */
+  border: 1px solid #ddd;
+  align-self: flex-start; /* AI 消息靠左 */
+}
+
+/* System message styling (loading, errors) */
+.message.system {
+   font-style: italic;
+   color: #888;
+   text-align: center;
+   align-self: center;
+   background-color: transparent;
+   border: none;
+   padding: 5px 0; /* 减少一点垂直间距 */
+}
+
+/* Error message specific styling */
+ .message.system.error {
+   color: red;
+   font-weight: bold;
+ }
+
+/* Sender label styling */
+.message .sender {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 3px;
+  font-size: 0.8em;
+  color: #555; /* 默认发送者颜色 */
+}
+ .message.ai .sender {
+    color: #007bff; /* AI 发送者颜色 */
+ }
+  .message.user .sender {
+    color: #4CAF50; /* 用户发送者颜色 */
+ }
+
+/* *** The key fix for text color *** */
+.message .text {
+  color: #333; /* 设置消息文本颜色为深灰色 */
+  /* 如果想要纯黑色，可以使用: color: black; 或 color: #000000; */
+}
+
+/* Chat input area styling */
+.chat-input {
+  display: flex;
+  margin-top: auto; /* 将输入框推到底部 */
+}
+
+/* Input field styling */
+.chat-input input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  font-size: 1em; /* 确保输入字体大小合适 */
+}
+ .chat-input input:disabled {
+     background-color: #f0f0f0;
+ }
+
+/* Send button styling */
+.chat-input button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+  transition: background-color 0.2s;
+  font-size: 1em; /* 确保按钮字体大小合适 */
+}
+
+.chat-input button:hover {
+  background-color: #0056b3;
+}
+ .chat-input button:disabled {
+     background-color: #aaa;
+     cursor: not-allowed;
+ }
+
+ /* Optional: Add some basic body styling if needed */
+ /* If you removed default Vite styles, you might want this */
+ /*
+ body {
+   margin: 0;
+   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   background-color: #f4f4f4; // 一个浅灰背景，让聊天框更突出
+ }
+ */

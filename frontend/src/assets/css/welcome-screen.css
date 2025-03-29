@@ -1,0 +1,193 @@
+/* ==== Global Reset & Body ==== */
+.welcome-wrapper {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  min-height: 100vh;
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ==== Aurora Background ==== */
+.aurora-background { /* Aurora styles remain the same */
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  overflow: hidden; z-index: 0; pointer-events: none;
+}
+.aurora { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.15; }
+.aurora-1 { width: 600px; height: 500px; background: radial-gradient(circle, rgba(0, 123, 255, 0.6) 0%, rgba(0, 123, 255, 0) 70%); top: -150px; left: -200px; animation: moveAurora1 25s infinite alternate ease-in-out; }
+.aurora-2 { width: 500px; height: 450px; background: radial-gradient(circle, rgba(233, 64, 122, 0.5) 0%, rgba(233, 64, 122, 0) 70%); top: 50px; right: -150px; animation: moveAurora2 30s infinite alternate ease-in-out; }
+.aurora-3 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(76, 175, 80, 0.4) 0%, rgba(76, 175, 80, 0) 70%); bottom: -100px; left: 10%; animation: moveAurora3 28s infinite alternate ease-in-out; }
+.aurora-4 { width: 350px; height: 300px; background: radial-gradient(circle, rgba(171, 71, 188, 0.5) 0%, rgba(171, 71, 188, 0) 70%); bottom: 10%; right: 5%; opacity: 0.1; animation: moveAurora4 35s infinite alternate ease-in-out; }
+@keyframes moveAurora1 { from { transform: translate(-20px, -10px) scale(1); opacity: 0.15; } to { transform: translate(20px, 30px) scale(1.1); opacity: 0.2; } }
+@keyframes moveAurora2 { from { transform: translate(15px, 20px) scale(1.1); opacity: 0.1; } to { transform: translate(-25px, -10px) scale(1); opacity: 0.18; } }
+@keyframes moveAurora3 { from { transform: translate(-30px, 10px) scale(0.9); opacity: 0.12; } to { transform: translate(10px, -20px) scale(1); opacity: 0.16; } }
+@keyframes moveAurora4 { from { transform: translate(5px, -5px) scale(1); opacity: 0.1; } to { transform: translate(-10px, 10px) scale(1.05); opacity: 0.15; } }
+
+/* ==== Header / Top Navigation ==== */
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* *** KEY CHANGE: Increased vertical padding *** */
+  padding: 25px 60px; /* Increased top/bottom padding */
+  position: relative;
+  z-index: 1;
+  background-color: rgba(18, 18, 18, 0.4); /* Slightly more opaque background */
+  backdrop-filter: blur(8px); /* Slightly stronger blur */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.nav-left { display: flex; align-items: center; gap: 12px; } /* Slightly increased gap */
+.header-logo { height: 32px; } /* Slightly larger logo */
+.header-title { font-size: 1.2em; font-weight: 600; color: #fff; }
+.nav-right { display: flex; align-items: center; gap: 22px; } /* Slightly increased gap */
+.nav-link { color: #b0b0b0; text-decoration: none; font-size: 0.9em; transition: color 0.2s ease; }
+.nav-link:hover { color: #fff; }
+.nav-right span { cursor: pointer; font-size: 1.1em; }
+
+/* ==== Main Content ==== */
+.main-content {
+  flex-grow: 1; /* Takes remaining space */
+  display: flex;
+  align-items: center; /* Vertically center content */
+  justify-content: space-between; /* Push left/right content to edges */
+  gap: 40px; /* Gap between text and logo areas */
+  padding: 30px 60px; /* Adjust padding as needed */
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.text-content {
+  /* *** KEY CHANGE: Define left side size *** */
+  flex-basis: 40%; /* Take less space */
+  max-width: 550px; /* Limit max width */
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title {
+  font-size: 2.9em; /* Adjust size if needed */
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 15px;
+  background: linear-gradient(90deg, #a8ff78, #78ffd6, #73a6ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  font-size: 1.25em; /* Adjust size if needed */
+  color: #a0a0a0;
+  margin-bottom: 30px;
+}
+
+.button-group {
+  display: flex;
+  gap: 15px; /* Adjust gap if needed */
+  justify-content: flex-start;
+}
+
+button { /* Button styles remain similar */
+  padding: 11px 28px; /* Adjust padding if needed */
+  font-size: 1.0em;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.start-button { background-color: #e9407a; color: white; }
+.start-button:hover { background-color: #d13068; transform: translateY(-2px); }
+.github-button { background-color: #2a2a2a; color: #e0e0e0; border: 1px solid #444; }
+.github-button:hover { background-color: #383838; transform: translateY(-2px); }
+
+.logo-container {
+  /* *** KEY CHANGE: Define right side size *** */
+  flex-basis: 55%; /* Take the larger portion */
+  max-width: 700px; /* Allow it to be wider */
+  height: 70vh; /* Give it significant height */
+  display: flex;
+  justify-content: center; /* Center logo horizontally */
+  align-items: center;   /* Center logo vertically */
+  perspective: 1000px;
+  /* Optional: Add a subtle border or background for visual separation */
+  /* border-left: 1px solid rgba(255, 255, 255, 0.1); */
+  /* padding-left: 30px; */
+}
+
+.main-logo {
+  width: auto; /* Let height control the size */
+  height: auto; /* Let height control the size */
+  /* *** KEY CHANGE: Control logo size within its container *** */
+  max-width: 80%; /* Limit logo width relative to its container */
+  max-height: 80%; /* Limit logo height relative to its container */
+  object-fit: contain; /* Ensure logo scales correctly without distortion */
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Slightly stronger shadow */
+  transition: transform 0.1s ease-out;
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);
+  will-change: transform;
+}
+
+/* ==== Footer / Features ==== */
+/* All .features and .feature-item rules are REMOVED */
+
+
+/* ==== Responsive Design ==== */
+@media (max-width: 992px) {
+    .main-content {
+        flex-direction: column; /* Stack on medium screens */
+        text-align: center;
+        padding: 30px; /* Adjust padding */
+        gap: 30px;
+    }
+    .text-content {
+        flex-basis: auto; /* Reset basis */
+        max-width: 90%;
+        align-items: center; /* Center content when stacked */
+        text-align: center;
+    }
+    .button-group {
+        justify-content: center;
+    }
+    .logo-container {
+        flex-basis: auto; /* Reset basis */
+        width: 80%; /* Control width */
+        max-width: 450px; /* Limit max width */
+        height: auto; /* Reset height */
+        min-height: 300px; /* Ensure some minimum height */
+        margin-top: 20px; /* Add space above logo when stacked */
+    }
+    .main-logo {
+        max-width: 90%; /* Adjust logo size within container */
+        max-height: 90%;
+    }
+    .top-nav {
+        padding: 15px 30px; /* Reduce padding on smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .title { font-size: 2.4em; }
+    .subtitle { font-size: 1.1em; }
+    .top-nav { padding: 12px 20px; }
+    .nav-right { gap: 15px; }
+    .logo-container { min-height: 250px; }
+}
+
+@media (max-width: 480px) {
+    .title { font-size: 2.0em; }
+    .subtitle { font-size: 1.0em; }
+    button { width: 90%; max-width: 300px; }
+    .main-logo { max-width: 95%; max-height: 95%; }
+    .top-nav { padding: 10px 15px; }
+}

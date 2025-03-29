@@ -28,7 +28,6 @@ AI_chat 是一个本地运行的 AI 聊天 Web 应用程序。它提供了一个
     *   Vite
     *   HTML5
     *   CSS3
-    *   JavaScript (ES6+)
     *   Fetch API (用于与后端通信)
 *   **后端:**
     *   Java (JDK 17)

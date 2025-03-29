@@ -16,9 +16,9 @@
     <section>
       <h2>技术栈</h2>
       <ul>
-        <li>**前端:** HTML, CSS, JavaScript, Vue 3 (Composition API), Vite</li>
+        <li>**前端:** HTML, CSS, Vue 3 (Composition API), Vite</li>
         <li>**后端:** Java (JDK 17), 内置 HttpServer, Gson (JSON处理), SnakeYAML (配置处理)</li>
-        <li>**AI:** Google Gemini API (可替换)</li>
+        <li>**AI:** Google Gemini API </li>
         <li>**通信:** HTTP (Fetch API), JSON</li>
       </ul>
     </section>

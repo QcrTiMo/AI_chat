@@ -1,5 +1,4 @@
 <script setup>
-// --- Script setup remains the same ---
 import { ref, watch, nextTick } from 'vue';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
@@ -14,10 +13,7 @@ watch(chatHistory, scrollToBottom, { deep: true }); watch([isLoading, errorMessa
 </script>
 
 <template>
-  <!-- Root wrapper sets the positioning context -->
   <div class="chat-interface-wrapper">
-
-    <!-- Chat History Area - Scrolls independently above the input -->
     <div class="chat-history" ref="chatHistoryRef">
       <div v-if="chatHistory.length === 0 && !isLoading" class="empty-chat">开始聊天吧！</div>
       <div v-for="(message, index) in chatHistory" :key="index" class="message" :class="message.sender">
@@ -30,8 +26,6 @@ watch(chatHistory, scrollToBottom, { deep: true }); watch([isLoading, errorMessa
       <div v-if="isLoading" class="message system">AI 正在思考...</div>
       <div v-if="errorMessage" class="message system error">{{ errorMessage }}</div>
     </div>
-
-    <!-- Input Area Container - Absolutely positioned at the bottom -->
     <div class="chat-input-container">
       <div v-if="previewImageUrl" class="image-preview-area">
         <img :src="previewImageUrl" alt="图片预览" class="preview-image"/>
@@ -54,48 +48,35 @@ watch(chatHistory, scrollToBottom, { deep: true }); watch([isLoading, errorMessa
 </template>
 
 <style scoped>
-/* --- Root Wrapper --- */
 .chat-interface-wrapper {
-  position: relative;   /* CRUCIAL: Context for absolute children */
+  position: relative; 
   height: 100%;
   width: 100%;
-  overflow: hidden;     /* Prevent wrapper scroll */
+  overflow: hidden;  
   background-color: #181818;
   box-sizing: border-box;
-  /* REMOVED display: flex; */
 }
-
-/* --- Chat History Area --- */
 .chat-history {
-  position: absolute;   /* CRUCIAL: Absolute positioning */
+  position: absolute;  
   top: 0;
   left: 0;
   right: 0;
-  /* CRUCIAL: Calculate bottom based on FINAL input area height */
-  /* Let's estimate input row (40px height + 10px padding * 2 = 60px) */
-  /* If preview is shown (max ~90px + border/padding), bottom needs to be larger */
-  /* We'll use a CSS variable updated by JS later, for now, use a fixed value */
-  /* Adjust this value after checking rendered height of .chat-input-container */
-  bottom: 65px; /* STARTING VALUE - MIGHT NEED ADJUSTMENT */
-
-  overflow-y: auto;     /* Scroll only this area */
+  bottom: 65px;
+  overflow-y: auto;   
   padding: 20px;
-  padding-bottom: 10px; /* Extra space at bottom */
+  padding-bottom: 10px;
   background-color: #1e1e1e;
   color: #ccc;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
 }
-/* Scrollbar */
 .chat-history::-webkit-scrollbar { width: 6px; }
 .chat-history::-webkit-scrollbar-track { background: transparent; }
 .chat-history::-webkit-scrollbar-thumb { background: #444; border-radius: 3px; }
 .chat-history::-webkit-scrollbar-thumb:hover { background: #555; }
-
-/* --- Input Area Container --- */
 .chat-input-container {
-  position: absolute;   /* CRUCIAL: Fixed at the bottom */
+  position: absolute; 
   bottom: 0;
   left: 0;
   right: 0;
@@ -103,52 +84,39 @@ watch(chatHistory, scrollToBottom, { deep: true }); watch([isLoading, errorMessa
   background: linear-gradient(to top, rgba(37, 37, 37, 1) 80%, rgba(37, 37, 37, 0.9));
   border-top: 1px solid #353535;
   display: flex;
-  flex-direction: column; /* Stack preview and input row */
+  flex-direction: column; 
   box-sizing: border-box;
-  padding: 0; /* Remove padding here, add to inner .chat-input */
+  padding: 0; 
 }
-
-/* --- Image Preview Area --- */
 .image-preview-area { padding: 8px 15px 5px 15px; position: relative; background-color: rgba(50, 50, 50, 0.7); border-bottom: 1px dashed #555; max-height: 90px; overflow: hidden; display: flex; align-items: center; flex-shrink: 0; }
 .preview-image { max-width: 80px; max-height: 70px; height: auto; width: auto; display: block; border-radius: 4px; border: 1px solid #666; margin-right: 10px; }
 .remove-preview-button { background: rgba(40, 40, 40, 0.8); color: #bbb; border: 1px solid #666; border-radius: 50%; width: 22px; height: 22px; font-size: 14px; line-height: 20px; text-align: center; cursor: pointer; font-weight: bold; padding: 0; margin-left: auto; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
 .remove-preview-button:hover { background: #e74c3c; color: #fff; border-color: #c0392b; }
 .remove-preview-button svg { vertical-align: middle; margin-bottom: 1px;}
-
-/* --- Input Row --- */
 .chat-input {
   display: flex; align-items: center; gap: 8px;
-  width: 100%; padding: 10px 15px; /* Padding for input row */
+  width: 100%; padding: 10px 15px; 
   box-sizing: border-box;
   flex-shrink: 0;
-  min-height: 60px; /* Ensure minimum height for the row */
+  min-height: 60px; 
 }
-
-/* --- Message Bubble Base Style --- */
 .message { display: flex; flex-direction: column; max-width: 85%; padding: 10px 15px; margin-bottom: 12px; border-radius: 18px; word-wrap: break-word; line-height: 1.5; background-color: #38383a; color: #ffffff; border: 1px solid #484848; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); min-width: 0; }
-/* User & AI Message Alignment */
 .message.user { align-self: flex-end; margin-left: auto; } /* Now grey */
 .message.ai { align-self: flex-start; margin-right: auto; }
-/* Sender Text Style */
 .message .sender { font-weight: bold; display: block; margin-bottom: 5px; font-size: 0.8em; color: rgba(255, 255, 255, 0.7); opacity: 0.8; }
 .message.user .sender { text-align: right; }
-/* Message Text / Markdown Container */
 .message .text { color: #ffffff; font-size: 0.95em; min-width: 0; }
 .message .text :deep(p), .message .text :deep(li), .message .text :deep(span), .message .text :deep(strong), .message .text :deep(em) { color: inherit !important; }
 .message .text :deep(a) { color: #80bfff !important; text-decoration: underline; }
 .message .text :deep(a:hover) { color: #a0cfff !important; }
 
-/* --- Code Block Styling --- */
 .markdown-body :deep(pre) { background-color: #1a1d21; border: 1px solid #101214; border-radius: 6px; padding: 12px 15px; overflow-x: auto; margin: 10px 0; }
 .markdown-body :deep(code) { font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.9em; background-color: #2e2e30; padding: 3px 6px; border-radius: 4px; color: #e6e6e6; }
 .markdown-body :deep(pre > code) { background-color: transparent; padding: 0; color: #e6e6e6; white-space: pre-wrap; word-wrap: break-word; }
-
-/* --- Image Attachment Styling --- */
-.image-attachment { margin-top: 8px; max-width: 35%; /* <<< REDUCED IMAGE SIZE FURTHER */ align-self: var(--align-self, flex-start); overflow: hidden; border-radius: 10px; }
+.image-attachment { margin-top: 8px; max-width: 35%;  align-self: var(--align-self, flex-start); overflow: hidden; border-radius: 10px; }
 .message.user .image-attachment { --align-self: flex-end; }
 .message.ai .image-attachment { --align-self: flex-start; }
 .chat-image { display: block; width: 100%; height: auto; cursor: pointer; }
-/* --- Other Styles --- */
 .empty-chat { color: #777; text-align: center; margin: auto; padding: 20px; }
 .message.system { color: #888; font-style: italic; text-align: center; margin-bottom: 10px; align-self: center; background: none; border: none; padding: 5px;}
 .message.system.error { color: #ff6b6b; font-style: normal; font-weight: bold;}
